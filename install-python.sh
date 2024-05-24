@@ -12,3 +12,22 @@ source  "${script_dir}/config.rc"
 
 target_version=$1
 : ${install_base_dir:=$2}
+
+
+##################################################################
+##
+##    2.  ビルド環境の確認
+##
+
+openssl_bin_dir=$(dirname "$(which openssl)")
+openssl_dir=$(readlink -f "${openssl_bin_dir}/..")
+
+echo "OpenSSL Dir = ${openssl_dir}"     1>&2
+
+pwd
+echo "${CC:='gcc'}"
+echo "${CXX:='g++'}"
+
+which gcc
+gcc --version
+sleep  5
