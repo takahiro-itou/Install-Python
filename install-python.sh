@@ -42,4 +42,19 @@ sleep  5
 python_configure_opts="--with-openssl=${openssl_dir}"
 python_configure_opts+=' --with-ssl-default-suites=openssl'
 
-export PYTHON_CONFIGURE_OPTS=${python_configure_opts}
+export  PYTHON_CONFIGURE_OPTS=${python_configure_opts}
+export  LDFLAGS="-Wl,-rpath,${openssl_dir}/lib"
+
+mkdir -p "${install_base_dir}/builds"
+pushd "${install_base_dir}/builds"
+tar -xzf "${installer_file}"
+cd "Python-${target_version}"
+
+./configure  \
+    --prefix="${target_prefix}"  \
+    --enable-optimizations  \
+    ${python_configure_opts}  \
+    ;
+make -j 2
+make install
+popd
