@@ -34,3 +34,8 @@ if [[ ! -f "${installer_file}" ]] ; then
     echo "FATAL : Installer file ${installer_file} is NOT available!!"  1>&2
     exit  2
 fi
+
+if ! tar -tf "${installer_file}" 1> /dev/null ; then
+    echo "FATAL : Installer ile ${installer_file} is NOT valid!!"   1>&2
+    exit  2
+fi
