@@ -25,12 +25,12 @@ installer_file="${installer_dir}/${archive_name}"
 
 if [[ ! -f "${installer_file}" ]] ; then
     # ファイルを持っていないのでダウンロードする
-    pushd "${installer_file}"
+    pushd "${installer_dir}"
     wget "${download_url}"
     popd
 fi
 
 if [[ ! -f "${installer_file}" ]] ; then
-    echo "FATAL : Installer ile ${installer_file} is NOT available!!"   1>&2
+    echo "FATAL : Installer file ${installer_file} is NOT available!!"  1>&2
     exit  2
 fi
