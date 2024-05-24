@@ -25,9 +25,9 @@ installer_file="${installer_dir}/${archive_name}"
 
 if [[ ! -f "${installer_file}" ]] ; then
     # ファイルを持っていないのでダウンロードする
-    pushd "${installer_dir}"
+    pushd "${installer_dir}"    1>&2
     wget "${download_url}"
-    popd
+    popd    1>&2
 fi
 
 if [[ ! -f "${installer_file}" ]] ; then
