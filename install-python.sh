@@ -20,6 +20,11 @@ target_version=$1
 ##    2.  ファイルの確認とダウンロード
 ##
 
+dlpinfo_file=$(mktemp dlpinfo.XXXXXXXX)
+/bin/bash -xue "${script_dir}/download-package.sh" "${target_version}"  \
+    | tee "${dlpinfo_file}"
+eval $(cat "${dlpinfo_file}")
+
 
 ##################################################################
 ##
