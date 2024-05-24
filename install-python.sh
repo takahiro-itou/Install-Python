@@ -24,6 +24,7 @@ dlpinfo_file=$(mktemp dlpinfo.XXXXXXXX)
 /bin/bash -xue "${script_dir}/download-package.sh" "${target_version}"  \
     | tee "${dlpinfo_file}"
 eval $(cat "${dlpinfo_file}")
+/usr/bin/rm -f "${dlpinfo_file}"
 
 
 ##################################################################
