@@ -20,6 +20,14 @@ target_version=$1
 ##    2.  ファイルの確認とダウンロード
 ##
 
+target_prefix="${install_base_dir}/${target_version}"
+if "${target_prefix}/bin/python3" --version ; then
+    # インストール済みなので何もしない
+    echo "Already installed in ${target_prefix}"    1>&2
+    sleep 5
+    exit  0
+fi
+
 dlpinfo_file=$(mktemp dlpinfo.XXXXXXXX)
 /bin/bash -xue "${script_dir}/download-package.sh" "${target_version}"  \
     | tee "${dlpinfo_file}"
@@ -43,7 +51,7 @@ echo "${CXX:='g++'}"
 
 which gcc
 gcc --version
-sleep  5
+sleep 5
 
 
 ##################################################################
