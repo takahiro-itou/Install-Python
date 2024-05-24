@@ -21,3 +21,11 @@ target_version=$1
 download_url_base='https://www.python.org/ftp/python'
 archive_name="Python-${target_version}.tgz"
 download_url="${download_url_base}/${target_version}/${archive_name}"
+installer_file="${installer_dir}/${archive_name}"
+
+if [[ ! -f "${installer_file}" ]] ; then
+    # ファイルを持っていないのでダウンロードする
+    pushd "${installer_file}"
+    wget "${download_url}"
+    popd
+fi
