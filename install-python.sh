@@ -5,6 +5,7 @@ script_dir=$(readlink -f "$(dirname "${script_file}")")
 
 source  "${script_dir}/config.rc"
 
+
 ##################################################################
 ##
 ##    1.  引数チェック
@@ -31,3 +32,14 @@ echo "${CXX:='g++'}"
 which gcc
 gcc --version
 sleep  5
+
+
+##################################################################
+##
+##    3.  対象ディレクトリに python をインストール
+##
+
+python_configure_opts="--with-openssl=${openssl_dir}"
+python_configure_opts+=' --with-ssl-default-suites=openssl'
+
+export PYTHON_CONFIGURE_OPTS=${python_configure_opts}
