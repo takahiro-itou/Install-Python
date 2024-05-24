@@ -11,3 +11,13 @@ source  "${script_dir}/config.rc"
 ##
 
 target_version=$1
+
+
+##################################################################
+##
+##    2.  パッケージをダウンロード
+##
+
+download_url_base='https://www.python.org/ftp/python'
+archive_name="Python-${target_version}.tgz"
+download_url="${download_url_base}/${target_version}/${archive_name}"
