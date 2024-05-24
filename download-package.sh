@@ -25,9 +25,9 @@ installer_file="${installer_dir}/${archive_name}"
 
 if [[ ! -f "${installer_file}" ]] ; then
     # ファイルを持っていないのでダウンロードする
-    pushd "${installer_dir}"
+    pushd "${installer_dir}"    1>&2
     wget "${download_url}"
-    popd
+    popd    1>&2
 fi
 
 if [[ ! -f "${installer_file}" ]] ; then
@@ -39,3 +39,11 @@ if ! tar -tf "${installer_file}" 1> /dev/null ; then
     echo "FATAL : Installer ile ${installer_file} is NOT valid!!"   1>&2
     exit  2
 fi
+
+
+##################################################################
+##
+##    3.  必要な情報を標準出力に書き込む
+##
+
+echo  "installer_file=${installer_file}"
