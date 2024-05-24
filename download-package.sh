@@ -39,3 +39,11 @@ if ! tar -tf "${installer_file}" 1> /dev/null ; then
     echo "FATAL : Installer ile ${installer_file} is NOT valid!!"   1>&2
     exit  2
 fi
+
+
+##################################################################
+##
+##    3.  必要な情報を標準出力に書き込む
+##
+
+echo  "installer_file=${installer_file}"
