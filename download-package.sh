@@ -29,3 +29,8 @@ if [[ ! -f "${installer_file}" ]] ; then
     wget "${download_url}"
     popd
 fi
+
+if [[ ! -f "${installer_file}" ]] ; then
+    echo "FATAL : Installer ile ${installer_file} is NOT available!!"   1>&2
+    exit  2
+fi
