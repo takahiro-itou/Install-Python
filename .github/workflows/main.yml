@@ -2,7 +2,7 @@
 name : Install Python Test
 
 env:
-  INSTALL_BASE : target
+  INSTALL-BASE : target
 
 jobs :
   install_python_job:
@@ -22,7 +22,7 @@ jobs :
         run  : |
           /bin/bash -xue install-python.sh "${{ matrix.target-version }}" "${INSTALL_BASE}"
         env   :
-          INSTALL_BASE : ${{ env.INSTALL_BASE }}
+          INSTALL_BASE : ${{ env.INSTALL-BASE }}
         shell : bash
 
       - name : Check
@@ -31,7 +31,7 @@ jobs :
           ls -alR "${INSTALL_BASE}"
           "${INSTALL_BASE}/python-${{ matrix.target-versoin }}/bin/python3" --version
         env   :
-          INSTALL_BASE : ${{ env.INSTALL_BASE }}
+          INSTALL_BASE : ${{ env.INSTALL-BASE }}
         shell : bash
 
 on :
