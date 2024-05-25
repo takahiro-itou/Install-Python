@@ -18,6 +18,7 @@ jobs :
         run  : |
           pwd
           ls -alR env
+          env/python-3.5.0/bin/python3 --version
         shell : bash
 
 on :
