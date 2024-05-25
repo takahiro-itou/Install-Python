@@ -9,13 +9,13 @@ jobs :
     steps :
       - uses : actions/checkout@v4
 
-      - id  : run-install
-        run : |
+      - name : Run-Install
+        run  : |
           /bin/bash -xue install-python.sh 3.5.0 env
         shell : bash
 
-      - id  : check
-        run : |
+      - name : Check
+        run  : |
           pwd
           ls -alR env
         shell : bash
