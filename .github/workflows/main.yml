@@ -14,14 +14,18 @@ jobs :
 
       - name : Run-Install
         run  : |
-          /bin/bash -xue install-python.sh 3.5.0 "${{ env.INSTALL_BASE }}"
+          /bin/bash -xue install-python.sh 3.5.0 "${INSTALL_BASE}"
+        env   :
+          INSTALL_BASE : ${{ env.INSTALL_BASE }}
         shell : bash
 
       - name : Check
         run  : |
           pwd
-          ls -alR env
-          "${{ env.INSTALL_BASE }}/python-3.5.0/bin/python3" --version
+          ls -alR "${INSTALL_BASE}"
+          "${INSTALL_BASE}/python-3.5.0/bin/python3" --version
+        env   :
+          INSTALL_BASE : ${{ env.INSTALL_BASE }}
         shell : bash
 
 on :
