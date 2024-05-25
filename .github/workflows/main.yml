@@ -1,6 +1,9 @@
 
 name : Install Python Test
 
+env:
+  INSTALL_BASE : target
+
 jobs :
   install_python_job:
     runs-on : ubuntu-latest
@@ -11,14 +14,14 @@ jobs :
 
       - name : Run-Install
         run  : |
-          /bin/bash -xue install-python.sh 3.5.0 env
+          /bin/bash -xue install-python.sh 3.5.0 "${{ env.INSTALL_BASE }}"
         shell : bash
 
       - name : Check
         run  : |
           pwd
           ls -alR env
-          env/python-3.5.0/bin/python3 --version
+          "${{ env.INSTALL_BASE }}/python-3.5.0/bin/python3" --version
         shell : bash
 
 on :
