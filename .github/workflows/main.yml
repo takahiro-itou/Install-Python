@@ -1,0 +1,41 @@
+
+name : Install Python Test
+
+env:
+  INSTALL-BASE : target
+
+jobs :
+  install_python_job:
+    name    : A job to Install python
+    runs-on : ubuntu-latest
+
+    strategy :
+      fail-fast : false
+
+      matrix :
+        target-version : [ 3.1.1, 3.10.0, 3.12.3 ]
+
+    steps :
+      - uses : actions/checkout@v4
+
+      - name : Run-Install
+        run  : |
+          /bin/bash -xue install-python.sh "${VERSION}" "${INSTALL_BASE}"
+        env   :
+          INSTALL_BASE : ${{ env.INSTALL-BASE }}
+          VERSION      : ${{ matrix.target-version }}
+        shell : bash
+
+      - name : Check
+        run  : |
+          pwd
+          ls -alR "${INSTALL_BASE}"
+          "${INSTALL_BASE}/python-${VERSION}/bin/python3" --version
+        env   :
+          INSTALL_BASE : ${{ env.INSTALL-BASE }}
+          VERSION      : ${{ matrix.target-version }}
+        shell : bash
+
+on :
+  push :
+    branches : [ "master", "develop" ]
