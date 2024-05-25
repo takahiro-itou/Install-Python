@@ -20,18 +20,20 @@ jobs :
 
       - name : Run-Install
         run  : |
-          /bin/bash -xue install-python.sh "${{ matrix.target-version }}" "${INSTALL_BASE}"
+          /bin/bash -xue install-python.sh "${VERSION}" "${INSTALL_BASE}"
         env   :
           INSTALL_BASE : ${{ env.INSTALL-BASE }}
+          VERSION      : ${{ matrix.target-version }}
         shell : bash
 
       - name : Check
         run  : |
           pwd
           ls -alR "${INSTALL_BASE}"
-          "${INSTALL_BASE}/python-${{ matrix.target-version }}/bin/python3" --version
+          "${INSTALL_BASE}/python-${VERSION}/bin/python3" --version
         env   :
           INSTALL_BASE : ${{ env.INSTALL-BASE }}
+          VERSION      : ${{ matrix.target-version }}
         shell : bash
 
 on :
